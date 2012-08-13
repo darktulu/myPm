@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<head>
+<title>MyPM</title>
+
+</head>
+<h:body style="background: #f1f1f1; ">
+	<div id="container">
+		<ui:include src="header.xhtml" />
+	</div>
+	<!--div id="Menu">
+            <ui:include src="Menus/Menu.xhtml"/>
+        </div-->
+
+	<h:form id="forms">
+		<table style="max-width: 1700px; margin: auto;">
+			<tbody>
+				<tr>
+					<td>
+						<div id="left"
+							style="width: 200px; min-height: 950px; background: #f1f1f1; font: 14px Helvetfontica, Arial, sans-serif;">
+							<h:panelGrid columns="2" columnClasses="cols,cols" width="400"
+								style="background: #ffffff;">
+								<rich:panelMenu style="width:198px" itemMode="ajax"
+									groupMode="ajax" groupExpandedLeftIcon="triangleUp"
+									groupCollapsedLeftIcon="triangleDown"
+									topGroupExpandedRightIcon="chevronUp"
+									topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc"
+									expandSingle="false">
+
+									<rich:panelMenuGroup label="My profile" expanded="true">
+										<a href="acceuil.xhtml"><rich:panelMenuItem
+												label="Personal Data" name="Personal Data"
+												leftIcon="images/user_gray.png" style="background: #fee6cd;" />
+										</a>
+										<a href="OrganizationalData.xhtml"><rich:panelMenuItem
+												label="Organizational Data" name="Organizational Data"
+												leftIcon="images/chart_organisation.png" /> </a>
+
+									</rich:panelMenuGroup>
+									<rich:panelMenuGroup label="My PM" expanded="true">
+										<a href="ongoingAppraisal.xhtml"><rich:panelMenuItem
+												label="Ongoing Aparisal" name="Ongoing Aparisal"
+												leftIcon="images/status_away.png" /> </a>
+										<a href="closedAppraisal.xhtml"><rich:panelMenuItem
+												label="Closed Appaisal" name="Closed Appaisal"
+												leftIcon="images/status_busy.png" /> </a>
+
+
+									</rich:panelMenuGroup>
+
+
+								</rich:panelMenu>
+							</h:panelGrid>
+
+						</div>
+
+					</td>
+
+					<td style="border: solid 1px #f1f1f1; width: 100%;">
+						<div id="middle"
+							style="width: 100%; min-height: 300px; border: solid 1px #f1f1f1;">
+
+							<div id="actions"
+								style="width: 100%; height: 80px; margin-bottom: 2px;"
+								title="Actions">
+								<p
+									style="color: #666666; font: bold 12px Helvetica, Arial, sans-serif; margin-left: 4px; margin-top: 4px;">Actions
+									:</p>
+								<h:panelGrid columns="5"
+									style="margin-top: 4px; margin-left: 4px;">
+									<h:panelGrid columns="2" style="margin-left: 20px;">
+										<a href="acceuil.xhtml"><img
+											src="images/1341096810_arrow_circle_left.png" /></a>
+										<h:outputText value="Refresh data  ">
+										</h:outputText>
+									</h:panelGrid>
+									<h:panelGrid columns="2" style="margin-left: 20px;">
+										<a href="BusinessGoals.xhtml"><img
+											src="images/1341098790_folder_photo.png" /></a>
+										<h:outputText value="Add  business goals  ">
+										</h:outputText>
+									</h:panelGrid>
+								</h:panelGrid>
+
+							</div>
+							<div>
+								<rich:panel style=" height: 650px; width: 996px;"
+									header="Ongoing Appraisal">
+
+									<rich:dataTable id="tab_contract"
+										value="#{EmployeAppraisalsCtl.employeAppraisals}"
+										var="Appraisal" styleClass="stable" style="width:100%;"
+										rows="15" rowClasses="odd-row, even-row">
+										<f:facet name="header">
+											<rich:columnGroup>
+												<rich:column rowspan="1">
+													<h:outputText value="apparaisal" />
+												</rich:column>
+												<rich:column rowspan="1">
+													<h:outputText value="apparaisee" />
+												</rich:column>
+
+												<rich:column rowspan="1">
+													<h:outputText value="idEmpAppriasals" />
+												</rich:column>
+
+												<rich:column rowspan="1">
+													<h:outputText value="status" />
+												</rich:column>
+
+											</rich:columnGroup>
+										</f:facet>
+
+										<rich:column>
+											<h:outputText value="#{Appraisal.apparaisal}" />
+										</rich:column>
+
+										<rich:column style="width: 220px;">
+											<h:outputText value="#{Appraisal.apparaisee}" />
+										</rich:column>
+
+										<rich:column>
+											<h:outputText value="#{Appraisal.idEmpAppriasals}" />
+										</rich:column>
+
+										<rich:column>
+											<h:outputText value="#{Appraisal.status}"
+												rendered="#{Appraisal.status=='Closed'}" style="color: red;" />
+											<h:outputText value="#{Appraisal.status}"
+												rendered="#{Appraisal.status=='Open'}" style="color: green;" />
+											<h:outputText value="#{Appraisal.status}"
+												rendered="#{Appraisal.status=='In Planning'}"
+												style="color: blue;" />
+										</rich:column>
+
+
+										<f:facet name="footer">
+											<rich:dataScroller />
+										</f:facet>
+
+									</rich:dataTable>
+								</rich:panel>
+							</div>
+						</div>
+
+
+					</td>
+
+
+				</tr>
+			</tbody>
+		</table>
+	</h:form>
+
+</h:body>
+</html>
