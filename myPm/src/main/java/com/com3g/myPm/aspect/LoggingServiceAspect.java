@@ -27,7 +27,7 @@ public class LoggingServiceAspect {
 	Object retVal = joinPoint.proceed();
 
 	stopWatch.stop();
-
+//test
 	StringBuffer logMessage = new StringBuffer();
 	logMessage.append(joinPoint.getTarget().getClass().getName());
 	logMessage.append(".");
