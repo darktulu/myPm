@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 public class EmployeAppraisals implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
-    private Integer idEmpAppriasals;
+    private Long idEmpAppriasals;
     private String employe;
     private String apparaisee;
     private int apparaisal;
@@ -36,11 +36,11 @@ public class EmployeAppraisals implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "Id_Emp_Appriasals", unique = true, nullable = false)
-    public Integer getIdEmpAppriasals() {
+    public Long getIdEmpAppriasals() {
 	return this.idEmpAppriasals;
     }
 
-    public void setIdEmpAppriasals(Integer idEmpAppriasals) {
+    public void setIdEmpAppriasals(Long idEmpAppriasals) {
 	this.idEmpAppriasals = idEmpAppriasals;
     }
 
