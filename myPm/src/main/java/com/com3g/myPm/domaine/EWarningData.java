@@ -91,7 +91,7 @@ public class EWarningData  implements java.io.Serializable {
         this.sevirity = sevirity;
     }
     
-    @Column(name="RAISON", length=65535)
+    @Column(name="RAISON", length=450)
     public String getRaison() {
         return this.raison;
     }

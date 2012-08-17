@@ -73,7 +73,7 @@ public class Child  implements java.io.Serializable {
         this.childBirthday = childBirthday;
     }
     
-    @Column(name="CHILD_NAME", length=65535)
+    @Column(name="CHILD_NAME", length=450 )
     public String getChildName() {
         return this.childName;
     }

@@ -73,7 +73,7 @@ public class TypeAbsence  implements java.io.Serializable {
         this.nombreDays = nombreDays;
     }
     
-    @Column(name="commantaire", length=65535)
+    @Column(name="commantaire", length=450)
     public String getCommantaire() {
         return this.commantaire;
     }

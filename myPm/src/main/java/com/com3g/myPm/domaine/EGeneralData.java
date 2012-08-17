@@ -231,7 +231,7 @@ public class EGeneralData implements java.io.Serializable {
 	this.cimr = cimr;
     }
 
-    @Column(name = "HOME_ADRESS", length = 65535)
+    @Column(name = "HOME_ADRESS", length = 450)
     public String getHomeAdress() {
 	return this.homeAdress;
     }
@@ -258,7 +258,7 @@ public class EGeneralData implements java.io.Serializable {
 	this.businessFax = businessFax;
     }
 
-    @Column(name = "CONTACT_INFORMATION", length = 65535)
+    @Column(name = "CONTACT_INFORMATION", length = 450)
     public String getContactInformation() {
 	return this.contactInformation;
     }
@@ -267,7 +267,7 @@ public class EGeneralData implements java.io.Serializable {
 	this.contactInformation = contactInformation;
     }
 
-    @Column(name = "EMERGENCY_CONTACT", length = 65535)
+    @Column(name = "EMERGENCY_CONTACT", length = 450)
     public String getEmergencyContact() {
 	return this.emergencyContact;
     }

@@ -50,7 +50,7 @@ public class PersonAttribut implements java.io.Serializable {
 	this.paTitle = paTitle;
     }
 
-    @Column(name = "Pa_Details", nullable = false, length = 65535)
+    @Column(name = "Pa_Details", nullable = false, length = 450)
     public String getPaDetails() {
 	return this.paDetails;
     }

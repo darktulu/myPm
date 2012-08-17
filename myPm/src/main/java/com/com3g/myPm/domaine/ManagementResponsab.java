@@ -51,7 +51,7 @@ public class ManagementResponsab implements java.io.Serializable {
 	this.mrTitle = mrTitle;
     }
 
-    @Column(name = "Mr_Details", nullable = false, length = 65535)
+    @Column(name = "Mr_Details", nullable = false, length = 450)
     public String getMrDetails() {
 	return this.mrDetails;
     }

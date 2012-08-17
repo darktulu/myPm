@@ -124,7 +124,7 @@ public class ELData  implements java.io.Serializable {
         this.status = status;
     }
     
-    @Column(name="SATATUS_DESCRIPTION", length=65535)
+    @Column(name="SATATUS_DESCRIPTION", length=450)
     public String getSatatusDescription() {
         return this.satatusDescription;
     }

@@ -54,7 +54,7 @@ public class JobExecution implements java.io.Serializable {
 	this.jeTitle = jeTitle;
     }
 
-    @Column(name = "Je_details", length = 65535)
+    @Column(name = "Je_details", length = 450)
     public String getJeDetails() {
 	return this.jeDetails;
     }

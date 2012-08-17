@@ -72,7 +72,7 @@ public class ESalaryData  implements java.io.Serializable {
         this.baseSalary = baseSalary;
     }
     
-    @Column(name="DESCRIPTION", length=65535)
+    @Column(name="DESCRIPTION", length=450)
     public String getDescription() {
         return this.description;
     }

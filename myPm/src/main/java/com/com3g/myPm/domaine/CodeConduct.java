@@ -31,7 +31,7 @@ public class CodeConduct implements java.io.Serializable {
 
     @EmbeddedId
     @AttributeOverrides({
-	    @AttributeOverride(name = "coCId", column = @Column(name = "CoC Id", nullable = false)),
+	    @AttributeOverride(name = "coCId", column = @Column(name = "CoC_Id", nullable = false)),
 	    @AttributeOverride(name = "employeAppraisals", column = @Column(name = "Employe_Appraisals", nullable = false, length = 100)) })
     public CodeConductId getId() {
 	return this.id;
@@ -50,7 +50,7 @@ public class CodeConduct implements java.io.Serializable {
 	this.coCTitle = coCTitle;
     }
 
-    @Column(name = "CoC_details", nullable = false, length = 65535)
+    @Column(name = "CoC_details", nullable = false, length = 450)
     public String getCoCDetails() {
 	return this.coCDetails;
     }

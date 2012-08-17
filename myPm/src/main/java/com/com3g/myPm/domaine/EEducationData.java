@@ -84,7 +84,7 @@ public class EEducationData  implements java.io.Serializable {
         this.nameInstitut = nameInstitut;
     }
     
-    @Column(name="Address_Institut", nullable=false, length=65535)
+    @Column(name="Address_Institut", nullable=false, length=450)
     public String getAddressInstitut() {
         return this.addressInstitut;
     }

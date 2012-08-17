@@ -64,7 +64,7 @@ public class ESpouse  implements java.io.Serializable {
         this.resurceId = resurceId;
     }
     
-    @Column(name="SPOUSE_NAME", length=65535)
+    @Column(name="SPOUSE_NAME", length=450)
     public String getSpouseName() {
         return this.spouseName;
     }

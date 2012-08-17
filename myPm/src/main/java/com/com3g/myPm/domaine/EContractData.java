@@ -112,7 +112,7 @@ public class EContractData implements java.io.Serializable {
 	this.contractStatus = contractStatus;
     }
 
-    @Column(name = "DESCRIPTION", length = 65535)
+    @Column(name = "DESCRIPTION", length = 450)
     public String getDescription() {
 	return this.description;
     }

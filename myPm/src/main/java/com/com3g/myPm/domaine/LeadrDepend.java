@@ -50,7 +50,7 @@ public class LeadrDepend implements java.io.Serializable {
 	this.ldTitle = ldTitle;
     }
 
-    @Column(name = "Ld_details", nullable = false, length = 65535)
+    @Column(name = "Ld_details", nullable = false, length = 450)
     public String getLdDetails() {
 	return this.ldDetails;
     }

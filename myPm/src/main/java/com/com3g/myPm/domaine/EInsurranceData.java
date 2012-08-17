@@ -146,7 +146,7 @@ public class EInsurranceData  implements java.io.Serializable {
         this.status = status;
     }
     
-    @Column(name="STATUS_DESCRIPTION", length=65535)
+    @Column(name="STATUS_DESCRIPTION", length=450)
     public String getStatusDescription() {
         return this.statusDescription;
     }

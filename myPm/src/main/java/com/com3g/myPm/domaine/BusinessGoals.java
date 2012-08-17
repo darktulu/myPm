@@ -58,7 +58,7 @@ public class BusinessGoals implements java.io.Serializable {
 	this.goalsTitle = goalsTitle;
     }
 
-    @Column(name = "Goals_details", length = 65535)
+    @Column(name = "Goals_details", length = 450)
     public String getGoalsDetails() {
 	return this.goalsDetails;
     }

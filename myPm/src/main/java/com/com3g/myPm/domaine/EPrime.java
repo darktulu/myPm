@@ -97,7 +97,7 @@ public class EPrime  implements java.io.Serializable {
         this.type = type;
     }
     
-    @Column(name="commentaire", length=65535)
+    @Column(name="commentaire", length=450)
     public String getCommentaire() {
         return this.commentaire;
     }
