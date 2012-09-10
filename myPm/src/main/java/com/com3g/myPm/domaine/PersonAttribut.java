@@ -1,18 +1,23 @@
 package com.com3g.myPm.domaine;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "person_attribut", catalog = "mypm")
+@Table(name = "person_attribut")
 public class PersonAttribut implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
-    private PersonAttributId id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id_Person_Attribut;
+    private int paId;
+    private String employeAppraisals;
+    private String employe;
     private String paTitle;
     private String paDetails;
     private double paWeight;
@@ -21,26 +26,49 @@ public class PersonAttribut implements java.io.Serializable {
     public PersonAttribut() {
     }
 
-    public PersonAttribut(PersonAttributId id, String paTitle, String paDetails, double paWeight, int summaryRating) {
-	this.id = id;
+    public PersonAttribut(int paId,String employeAppraisals,String employe, String paTitle, String paDetails, double paWeight, int summaryRating) {
+	this.paId = paId;
+	this.employeAppraisals=employeAppraisals;
+	this.employe = employe;
 	this.paTitle = paTitle;
 	this.paDetails = paDetails;
 	this.paWeight = paWeight;
 	this.summaryRating = summaryRating;
     }
 
-    @EmbeddedId
-    @AttributeOverrides({
-	    @AttributeOverride(name = "paId", column = @Column(name = "Pa_Id", nullable = false)),
-	    @AttributeOverride(name = "employeAppraisals", column = @Column(name = "Employe_Appraisals", nullable = false, length = 100)) })
-    public PersonAttributId getId() {
-	return this.id;
+    public Long getId_Person_Attribut() {
+		return id_Person_Attribut;
+	}
+
+	public void setId_Person_Attribut(Long id_Person_Attribut) {
+		this.id_Person_Attribut = id_Person_Attribut;
+	}
+
+	@Column(name = "Pa_Id", nullable = false)
+    public int getPaId() {
+	return this.paId;
     }
 
-    public void setId(PersonAttributId id) {
-	this.id = id;
+    public void setPaId(int paId) {
+	this.paId = paId;
     }
 
+    @Column(name = "Employe_Appraisals", nullable = false, length = 100)
+    public String getEmployeAppraisals() {
+	return this.employeAppraisals;
+    }
+
+    public void setEmployeAppraisals(String employeAppraisals) {
+	this.employeAppraisals = employeAppraisals;
+    }
+    @Column(name = "Employe", nullable = false, length = 50)
+    public String getEmploye() {
+	return this.employe;
+    }
+
+    public void setEmploye(String employe) {
+	this.employe = employe;
+    }
     @Column(name = "Pa_Title", nullable = false, length = 100)
     public String getPaTitle() {
 	return this.paTitle;

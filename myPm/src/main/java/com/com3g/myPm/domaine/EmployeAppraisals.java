@@ -11,7 +11,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "employe_appraisals", catalog = "mypm")
+@Table(name = "employe_appraisals")
 public class EmployeAppraisals implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -19,17 +19,17 @@ public class EmployeAppraisals implements java.io.Serializable {
     private String employe;
     private String apparaisee;
     private int apparaisal;
-    private String status;
+    private String status_Appraisal;
     private Date date;
 
     public EmployeAppraisals() {
     }
 
-    public EmployeAppraisals(String employe, String apparaisee, int apparaisal, String status, Date date) {
+    public EmployeAppraisals(String employe, String apparaisee, int apparaisal, String status_Appraisal, Date date) {
 	this.employe = employe;
 	this.apparaisee = apparaisee;
 	this.apparaisal = apparaisal;
-	this.status = status;
+	this.status_Appraisal = status_Appraisal;
 	this.date = date;
     }
 
@@ -71,14 +71,14 @@ public class EmployeAppraisals implements java.io.Serializable {
 	this.apparaisal = apparaisal;
     }
 
-    @Column(name = "Status", nullable = false, length = 50)
-    public String getStatus() {
-	return this.status;
-    }
+    @Column(name = "status_Appraisal", nullable = false, length = 50)
+    public String getStatus_Appraisal() {
+		return status_Appraisal;
+	}
 
-    public void setStatus(String status) {
-	this.status = status;
-    }
+	public void setStatus_Appraisal(String status_Appraisal) {
+		this.status_Appraisal = status_Appraisal;
+	}
 
     @Temporal(TemporalType.DATE)
     @Column(name = "Date", nullable = false, length = 10)
@@ -86,7 +86,9 @@ public class EmployeAppraisals implements java.io.Serializable {
 	return this.date;
     }
 
-    public void setDate(Date date) {
+   
+
+	public void setDate(Date date) {
 	this.date = date;
     }
 

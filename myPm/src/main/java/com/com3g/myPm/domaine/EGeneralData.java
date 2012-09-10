@@ -10,7 +10,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "e_general_data", catalog = "mypm")
+@Table(name = "e_general_data")
 public class EGeneralData implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;

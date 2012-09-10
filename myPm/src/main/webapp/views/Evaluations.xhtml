@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/templates/template.xhtml">
+
+	<ui:define name="title">
+		MyPM
+    </ui:define>
+
+	<ui:define name="header">
+		<ui:include src="/templates/headers/header.xhtml" />
+	</ui:define>
+
+	<ui:define name="sider">
+		<ui:include src="/templates/siders/sider.xhtml" />
+	</ui:define>
+
+	<ui:define name="body">
+		<h1 class="page-header">
+			<small>Menu Des évaluations professionnelles </small>
+
+		</h1>
+		<h:form id="formBuisness">
+			<h3>Mon équipe</h3>
+			<p:dataTable id="dataTable" var="employ"
+				styleClass="table table-striped" value="#{myTeam.myteam}">
+
+				<p:column headerText="Nom">
+					<h:outputText value="#{employ.surname}" />
+
+				</p:column>
+				<p:column headerText="Prenom">
+					<h:outputText value="#{employ.name}" />
+
+				</p:column>
+				<p:column headerText="Fonction">
+					<h:outputText value="#{employ.jobeTitle}" />
+
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Actions" />
+					</f:facet>
+
+					<div class="btn-group">
+						<p:commandLink styleClass="btn btn-primary" style="color:white"
+							oncomplete="jobexecutionform.show()" update=":jobexecution">
+							<i class=" icon-tag icon-white"></i>
+							<f:setPropertyActionListener value="#{employ}"
+								target="#{evaluationBean.eGeneralData}" />
+						</p:commandLink>
+
+					</div>
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+		
+		<h:form id="jobexecution">
+			<p:confirmDialog widgetVar="jobexecutionform"
+				message="Evaluation du Metier">
+                 <table class="table table-stripped">
+									<tbody>
+										<tr>
+											<td><h:outputText /><strong>Coefficient</strong></td>
+											<td><h:inputText
+													value="#{evaluationBean.jobExecution.jeWeight}"></h:inputText></td>
+
+										</tr>
+										<tr>
+											<td><h:outputText /><strong>Note</strong></td>
+											<td><h:inputText id="c" value="#{evaluationBean.jobExecution.summaryRating}"></h:inputText ></td>
+										</tr>
+										<tr>
+											<td><h:outputText /><strong>Details</strong></td>
+											<td><h:inputText  id="ds" value="#{evaluationBean.jobExecution.jeDetails}"></h:inputText ></td>
+										</tr>
+									</tbody>
+								</table>
+				
+				<h:commandLink id="confirmDels" value="Confirmer"
+					oncomplete="jobexecutionforml.hide()"
+					action="#{myTeam.init}"
+					actionListener="#{evaluationBean.saveJobExecution}" styleClass="btn"
+					update=":formBuisness">
+				</h:commandLink>
+
+				<p:commandLink id="declineDel" value="Annuler"
+					onclick="jobexecutionform.hide()" type="button" styleClass="btn" />
+			</p:confirmDialog>
+		</h:form>
+
+
+	</ui:define>
+	<ui:define name="footer">
+		<ui:include src="/templates/footers/footer.xhtml" />
+	</ui:define>
+</ui:composition>

@@ -11,13 +11,14 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "appraisals", catalog = "mypm")
+@Table(name = "appraisals")
 public class Appraisals implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
     private Integer appraisal;
     private int year;
-    private Date startDate;
+    private String status;
+	private Date startDate;
     private Date endDate;
     private Date planningStartDate;
     private Date planningEndDate;
@@ -29,10 +30,11 @@ public class Appraisals implements java.io.Serializable {
     public Appraisals() {
     }
 
-    public Appraisals(int year, Date startDate, Date endDate, Date planningStartDate, Date planningEndDate,
+    public Appraisals(int year, String status , Date startDate, Date endDate, Date planningStartDate, Date planningEndDate,
 	    Date midYearReviewStartDate, Date midYearReviewEndDate, Date endYearSummaryStartDate,
 	    Date endYearSummaryEndDate) {
 	this.year = year;
+	this.status = status;
 	this.startDate = startDate;
 	this.endDate = endDate;
 	this.planningStartDate = planningStartDate;
@@ -142,5 +144,14 @@ public class Appraisals implements java.io.Serializable {
     public void setEndYearSummaryEndDate(Date endYearSummaryEndDate) {
 	this.endYearSummaryEndDate = endYearSummaryEndDate;
     }
+    
+    @Column(name = "STATUS", nullable = false, length = 100)
+    public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 }

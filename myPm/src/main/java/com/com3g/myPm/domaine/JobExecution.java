@@ -1,18 +1,23 @@
 package com.com3g.myPm.domaine;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "job_execution", catalog = "mypm")
+@Table(name = "job_execution")
 public class JobExecution implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
-    private JobExecutionId id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id_Job_Execution;
+    private int jeId;
+    private String employeAppraisals;
+    private String employe;
     private String jeTitle;
     private String jeDetails;
     private Double jeWeight;
@@ -21,30 +26,53 @@ public class JobExecution implements java.io.Serializable {
     public JobExecution() {
     }
 
-    public JobExecution(JobExecutionId id) {
-	this.id = id;
-    }
 
-    public JobExecution(JobExecutionId id, String jeTitle, String jeDetails, Double jeWeight, Integer summaryRating) {
-	this.id = id;
+    public JobExecution(int jeId,String employeAppraisals,String employe, String jeTitle, String jeDetails, Double jeWeight, Integer summaryRating) {
+	this.jeId = jeId;
+	this.employeAppraisals =employeAppraisals;
+	this.employe =employe;
 	this.jeTitle = jeTitle;
 	this.jeDetails = jeDetails;
 	this.jeWeight = jeWeight;
 	this.summaryRating = summaryRating;
     }
 
-    @EmbeddedId
-    @AttributeOverrides({
-	    @AttributeOverride(name = "jeId", column = @Column(name = "Je_Id", nullable = false)),
-	    @AttributeOverride(name = "employeAppraisals", column = @Column(name = "Employe_Appraisals", nullable = false, length = 100)) })
-    public JobExecutionId getId() {
-	return this.id;
+  
+    public Long getId_Job_Execution() {
+		return id_Job_Execution;
+	}
+
+
+	public void setId_Job_Execution(Long id_Job_Execution) {
+		this.id_Job_Execution = id_Job_Execution;
+	}
+
+
+	@Column(name = "Je_Id", nullable = false)
+    public int getJeId() {
+	return this.jeId;
     }
 
-    public void setId(JobExecutionId id) {
-	this.id = id;
+    public void setJeId(int jeId) {
+	this.jeId = jeId;
     }
 
+    @Column(name = "Employe_Appraisals", nullable = false, length = 100)
+    public String getEmployeAppraisals() {
+	return this.employeAppraisals;
+    }
+
+    public void setEmployeAppraisals(String employeAppraisals) {
+	this.employeAppraisals = employeAppraisals;
+    }
+    @Column(name = "Employe", nullable = false, length = 50)
+    public String getEmploye() {
+	return this.employe;
+    }
+
+    public void setEmploye(String employe) {
+	this.employe = employe;
+    }
     @Column(name = "Je_Title", length = 100)
     public String getJeTitle() {
 	return this.jeTitle;

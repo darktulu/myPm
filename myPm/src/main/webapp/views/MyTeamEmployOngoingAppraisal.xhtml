@@ -1,0 +1,394 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/templates/template.xhtml">
+
+	<ui:define name="title">
+		MyPM
+    </ui:define>
+
+	<ui:define name="header">
+		<ui:include src="/templates/headers/header.xhtml" />
+	</ui:define>
+
+	<ui:define name="sider">
+		<ui:include src="/templates/siders/sider.xhtml" />
+	</ui:define>
+
+	<ui:define name="body">
+		<h1 class="page-header">
+			<small>${lbl.buisnessGoals} : </small>
+
+		</h1>
+		<h:form>
+			<a href="MyTeamOngoingAppraisal.xhtml" class="btn btn-success">Back</a>
+		</h:form>
+		<h:form id="formBuisness">
+			<h3>personal goals</h3>
+			<p:dataTable id="dataTable" var="goal"
+				styleClass="table table-striped"
+				value="#{employBuisnessGoals.businessGoalsOpen}">
+
+				<p:column headerText="Appraisal">
+					<h:outputText value="#{goal.empAppriasals}" />
+
+				</p:column>
+
+				<p:column headerText="Goal Id">
+					<h:outputText value="#{goal.golasId}" />
+				</p:column>
+
+				<p:column headerText="Title">
+					<h:outputText value="#{goal.goalsTitle}" />
+				</p:column>
+				<p:column headerText="Details">
+					<h:outputText value="#{goal.goalsDetails}" />
+				</p:column>
+				<p:column headerText="Status">
+					<h:outputText value="#{goal.status_Appraisal}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Actions" />
+					</f:facet>
+
+					<div class="btn-group">
+						<p:commandLink styleClass="btn btn-primary" style="color:white"
+							oncomplete="confirmationShow.show()" update=":editform">
+							<i class="icon-search icon-white"></i>
+							<f:setPropertyActionListener value="#{goal}"
+								target="#{buisnessGoalsEdit.businessGoals}" />
+						</p:commandLink>
+						<p:commandLink styleClass="btn btn-primary" style="color:white"
+							oncomplete="confirmComment.show()" update=":formSessionComment"
+							>
+							<i class=" icon-tag icon-white"></i>
+							<f:setPropertyActionListener value="#{goal}"
+								target="#{buisnessGoalsEdit.businessGoals}" />
+						</p:commandLink>
+
+						<p:commandLink styleClass="btn btn-success" style="color:white"
+							oncomplete="confirmDel.show()" update=":editform"
+							rendered="#{goal.status_Appraisal=='Planning submited to Manager'}">
+							<i class="icon-check icon-white"></i>
+							<f:setPropertyActionListener value="#{goal}"
+								target="#{buisnessGoalsEdit.businessGoals}" />
+						</p:commandLink>
+						
+						<p:commandLink styleClass="btn btn-warning" style="color:white"
+							oncomplete="confirmRaiting.show()" update=":formSessionrate"
+							rendered="#{goal.status_Appraisal=='Planning approuved by Manager'}">
+							<i class="icon-tasks icon-white"></i>
+							<f:setPropertyActionListener value="#{goal}"
+								target="#{buisnessGoalsEdit.businessGoals}" />
+						</p:commandLink>
+					</div>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		
+		<h3>Evaluation</h3>
+		<h:form id="formEval">
+		<div class="tabbable">
+					<!-- Only required for left/right tabs -->
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#general" data-toggle="tab">Job Execution</a></li>
+						<li><a href="#planning" data-toggle="tab">Code of Conduct</a></li>
+						<li><a href="#midyear" data-toggle="tab">MANAG RESPON</a></li>
+						<li><a href="#endyear" data-toggle="tab">PERS ATTR</a></li>
+						<li><a href="#summry" data-toggle="tab">LEADERS DEPEND</a></li>
+					</ul>
+
+					<div class="tab-content">
+
+						<div class="tab-pane active" id="general">
+
+							<blockquote>
+								<h4>Job Execution</h4>
+								<table class="table table-stripped">
+									<tbody>
+										<tr>
+											<td><strong>Title</strong></td>
+											<td><h:outputText
+													value="#{evaluationDetails.jobExecution.jeTitle}"></h:outputText></td>
+										</tr>
+										<tr>
+											<td><h:outputText /><strong>JeWeight</strong></td>
+											<td><h:outputText
+													value="#{evaluationDetails.jobExecution.jeWeight}"></h:outputText></td>
+										</tr>
+										<tr>
+											<td><h:outputText /><strong>SummaryRating</strong></td>
+											<td><h:outputText
+													value="#{evaluationDetails.jobExecution.summaryRating}"></h:outputText></td>
+										</tr>
+										<tr>
+											<td><h:outputText /><strong>JeDetails</strong></td>
+											<td><h:outputText
+													value="#{evaluationDetails.jobExecution.jeDetails}"></h:outputText></td>
+										</tr>
+									</tbody>
+								</table>
+
+							</blockquote>
+						</div>
+						<div class="tab-pane" id="planning">
+							<blockquote>
+								<h4>Code of Conduct</h4>
+
+								<table class="table table-stripped">
+									<tbody>
+										<tr>
+											<td><strong>Title</strong></td>
+											<td><h:outputText
+													value="#{evaluationDetails.jobExecution.jeTitle}"></h:outputText></td>
+										</tr>
+										<tr>
+											<td><h:outputText /><strong>CoCWeight</strong></td>
+											<td><h:outputText
+													value="#{evaluationDetails.jobExecution.jeWeight}"></h:outputText></td>
+										</tr>
+										<tr>
+											<td><h:outputText /><strong>SummaryRating</strong></td>
+											<td><h:outputText
+													value="#{evaluationDetails.jobExecution.summaryRating}"></h:outputText></td>
+										</tr>
+										<tr>
+											<td><h:outputText /><strong>Details</strong></td>
+											<td><h:outputText
+													value="#{evaluationDetails.jobExecution.jeDetails}"></h:outputText></td>
+										</tr>
+									</tbody>
+								</table>
+							</blockquote>
+						</div>
+						<div class="tab-pane" id="midyear">
+							<blockquote>
+								<h4>MANAG RESPON</h4>
+								<table class="table table-stripped">
+									<tbody>
+										<tr>
+											<td><strong>Title</strong></td>
+											<td><h:outputText
+													value="#{evaluationDetails.jobExecution.jeTitle}"></h:outputText></td>
+										</tr>
+										<tr>
+											<td><h:outputText /><strong>Weight</strong></td>
+											<td><h:outputText
+													value="#{evaluationDetails.jobExecution.jeWeight}"></h:outputText></td>
+										</tr>
+										<tr>
+											<td><h:outputText /><strong>SummaryRating</strong></td>
+											<td><h:outputText
+													value="#{evaluationDetails.jobExecution.summaryRating}"></h:outputText></td>
+										</tr>
+										<tr>
+											<td><h:outputText /><strong>Details</strong></td>
+											<td><h:outputText
+													value="#{evaluationDetails.jobExecution.jeDetails}"></h:outputText></td>
+										</tr>
+									</tbody>
+								</table>
+							</blockquote>
+						</div>
+						<div class="tab-pane" id="endyear">
+							<blockquote>
+								<h4>PERS ATTR</h4>
+								<table class="table table-stripped">
+									<tbody>
+										<tr>
+											<td><strong>Title</strong></td>
+											<td><h:outputText
+													value="#{evaluationDetails.jobExecution.jeTitle}"></h:outputText></td>
+										</tr>
+										<tr>
+											<td><h:outputText /><strong>Weight</strong></td>
+											<td><h:outputText
+													value="#{evaluationDetails.jobExecution.jeWeight}"></h:outputText></td>
+										</tr>
+										<tr>
+											<td><h:outputText /><strong>SummaryRating</strong></td>
+											<td><h:outputText
+													value="#{evaluationDetails.jobExecution.summaryRating}"></h:outputText></td>
+										</tr>
+										<tr>
+											<td><h:outputText /><strong>Details</strong></td>
+											<td><h:outputText
+													value="#{evaluationDetails.jobExecution.jeDetails}"></h:outputText></td>
+										</tr>
+									</tbody>
+								</table>
+							</blockquote>
+						</div>
+						<div class="tab-pane" id="summry">
+							<blockquote>
+								<h4>LEADERS DEPEND</h4>
+								<table class="table table-stripped">
+									<tbody>
+										<tr>
+											<td><strong>Title</strong></td>
+											<td><h:outputText
+													value="#{evaluationDetails.jobExecution.jeTitle}"></h:outputText></td>
+										</tr>
+										<tr>
+											<td><h:outputText /><strong>Weight</strong></td>
+											<td><h:outputText
+													value="#{evaluationDetails.jobExecution.jeWeight}"></h:outputText></td>
+										</tr>
+										<tr>
+											<td><h:outputText /><strong>SummaryRating</strong></td>
+											<td><h:outputText
+													value="#{evaluationDetails.jobExecution.summaryRating}"></h:outputText></td>
+										</tr>
+										<tr>
+											<td><h:outputText /><strong>Details</strong></td>
+											<td><h:outputText
+													value="#{evaluationDetails.jobExecution.jeDetails}"></h:outputText></td>
+										</tr>
+									</tbody>
+								</table>
+							</blockquote>
+						</div>
+					</div>
+				</div>
+		
+		</h:form>
+
+		<h:form id="formSessionDel">
+			<p:confirmDialog widgetVar="confirmDel"
+				message="Voullez-vous vraiment confirmer cet objectif ? cette action est irréversible">
+
+				<h:commandLink id="confirmDels" value="Confirmer"
+					oncomplete="confirmationDel.hide()"
+					action="#{employBuisnessGoals.init}"
+					actionListener="#{buisnessGoalsEdit.confirm}" styleClass="btn"
+					update=":formBuisness">
+				</h:commandLink>
+
+				<p:commandLink id="declineDel" value="Annuler"
+					onclick="confirmationDel.hide()" type="button" styleClass="btn" />
+			</p:confirmDialog>
+		</h:form>
+		
+		<h:form id="formSessionComment">
+			<p:confirmDialog widgetVar="confirmComment"
+				message="Ajouter un commentaire à cette évaluation ! ">
+				
+				<div class="control-group">
+					<h:outputLabel value="Comments" styleClass="control-label" />
+					<div class="controls">
+						<h:inputTextarea
+							value="#{buisnessGoalsEdit.businessGoals.comment}"
+							style="height : 200px; width : 500px;"></h:inputTextarea>
+					</div>
+				</div>
+
+				<h:commandLink id="confirmDelds" value="Ajouter"
+					oncomplete="confirmComment.hide()"
+					action="#{employBuisnessGoals.init}"
+					actionListener="#{buisnessGoalsEdit.saveBuisnessGoal}" styleClass="btn"
+					update=":formBuisness">
+				</h:commandLink>
+
+				<p:commandLink id="declineDel" value="Annuler"
+					onclick="confirmComment.hide()" type="button" styleClass="btn" />
+			</p:confirmDialog>
+		</h:form>
+
+		<h:form id="formSessionrate">
+			<p:confirmDialog widgetVar="confirmRaiting"
+				message="Evaluation des objectifs" >
+
+				<table class="table table-stripped">
+					<tbody>
+						<tr>
+							<td><strong>Coefficient</strong></td>
+							<td><h:inputText
+									value="#{buisnessGoalsEdit.businessGoals.goalWeight}" /></td>
+						</tr>
+						<tr>
+							<td><strong>Mention</strong></td>
+							<td><h:inputText
+									value="#{buisnessGoalsEdit.businessGoals.midYearReview}" /></td>
+						</tr>
+						<tr>
+							<td><strong>Note(1-5)</strong></td>
+							<td><h:inputText
+									value="#{buisnessGoalsEdit.businessGoals.summaryRating}" /></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h:commandLink id="confirmr" value="Save"
+					oncomplete="confirmRaiting.hide()"
+					action="#{apprailsListBean.init}"
+					actionListener="#{buisnessGoalsEdit.saveBuisnessGoal}"
+					styleClass="btn" update=":formBuisness">
+				</h:commandLink>
+
+				<p:commandLink id="declineDlr" value="Annuler"
+					onclick="confirmRaiting.hide()" type="button" styleClass="btn" />
+			</p:confirmDialog>
+		</h:form>
+
+		<h:form id="editform">
+
+
+			<p:dialog id="show" widgetVar="confirmationShow" width="400"
+				style="height:400px;" message="Show goal" modal="true">
+
+
+				<table class="table table-stripped">
+					<tbody>
+						<tr>
+							<td><strong>Objectif</strong></td>
+							<td><h:outputText
+									value="#{buisnessGoalsEdit.businessGoals.golasId}" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText /><strong>Titre</strong></td>
+							<td><h:outputText
+									value="#{buisnessGoalsEdit.businessGoals.goalsTitle}" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText /><strong>Details</strong></td>
+							<td><h:outputText
+									value="#{buisnessGoalsEdit.businessGoals.goalsDetails}" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText /><strong>Status</strong></td>
+							<td><h:outputText
+									value="#{buisnessGoalsEdit.businessGoals.status_Appraisal}" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText /><strong>Mention</strong></td>
+							<td><h:outputText
+									value="#{buisnessGoalsEdit.businessGoals.midYearReview}" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText /><strong>Note</strong></td>
+							<td><h:outputText
+									value="#{buisnessGoalsEdit.businessGoals.summaryRating}" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText /><strong>Coefficient</strong></td>
+							<td><h:outputText
+									value="#{buisnessGoalsEdit.businessGoals.goalWeight}" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText /><strong>Commentaire</strong></td>
+							<td><h:outputText
+									value="#{buisnessGoalsEdit.businessGoals.comment}" /></td>
+						</tr>
+					</tbody>
+				</table>
+
+			</p:dialog>
+		</h:form>
+	</ui:define>
+	<ui:define name="footer">
+		<ui:include src="/templates/footers/footer.xhtml" />
+	</ui:define>
+</ui:composition>

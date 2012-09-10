@@ -24,7 +24,7 @@ public class LoginBean {
     public String doLogin() {
 	try {
 	    authenticationService.login(username, password);
-	    return "accueil";
+	    return "accueil.xhtml?faces-redirect=true";
 	} catch (AuthenticationException e) {
 	    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Le mot de passe / nom d'utilisateur est erroné.",null));
 	    return "index";

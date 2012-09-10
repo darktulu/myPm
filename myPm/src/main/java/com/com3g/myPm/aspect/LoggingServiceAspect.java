@@ -18,7 +18,7 @@ public class LoggingServiceAspect {
 
     protected final Logger logger = Logger.getLogger("Service LOG");
     
-    @Around("execution(* com.com3g.myPm.service..*(..))")
+   // @Around("execution(* com.com3g.myPm.service..*(..))")
     public Object serviceLogAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
 
 	StopWatch stopWatch = new StopWatch();
