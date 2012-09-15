@@ -16,13 +16,14 @@ import com.com3g.myPm.repos.metier.UsersRepos;
 public class UserSessionBean implements Serializable {
 
 	private String username;
+	private String selectedUsername;
+
 	private Users userLoggedIn = new Users();
 	@ManagedProperty(value = "#{usersRepos}")
 	private UsersRepos userRepos;
 
 	public Users getUserLoggedIn() {
-		username = SecurityContextHolder.getContext().getAuthentication()
-				.getName();
+		username = SecurityContextHolder.getContext().getAuthentication().getName();
 
 		userLoggedIn = userRepos.findByUsername(username);
 
@@ -35,8 +36,7 @@ public class UserSessionBean implements Serializable {
 
 	public String getUsername() {
 		if (username == null || "".equals(username))
-			username = SecurityContextHolder.getContext().getAuthentication()
-					.getName();
+			username = SecurityContextHolder.getContext().getAuthentication().getName();
 		return username;
 	}
 
@@ -50,6 +50,14 @@ public class UserSessionBean implements Serializable {
 
 	public void setUserRepos(UsersRepos userRepos) {
 		this.userRepos = userRepos;
+	}
+
+	public String getSelectedUsername() {
+		return selectedUsername;
+	}
+
+	public void setSelectedUsername(String selectedUser) {
+		this.selectedUsername = selectedUser;
 	}
 
 }

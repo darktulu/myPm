@@ -58,6 +58,8 @@
 							<i class="icon-pencil"></i>
 							<f:setPropertyActionListener value="#{employ}"
 								target="#{employBuisnessGoals.employ}" />
+							<f:setPropertyActionListener value="#{employ.username}"
+								target="#{userSessionBean.selectedUsername}" />
 						</p:commandLink>
 
 					</div>

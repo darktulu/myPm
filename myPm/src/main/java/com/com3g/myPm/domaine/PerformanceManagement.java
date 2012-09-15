@@ -1,12 +1,18 @@
 package com.com3g.myPm.domaine;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -21,9 +27,14 @@ public class PerformanceManagement implements Serializable {
 	@ManyToOne
 	private Users employe;
 	@OneToMany
-	private List<Evaluation> evaluations;
+	private List<Evaluation> evaluations = new ArrayList<Evaluation>();
 	@ManyToOne
 	private Appraisals appraisals;
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<SectionMypm> sections = new ArrayList<SectionMypm>();
+
+	private String status;
 
 	private Integer JobExecutionRating;
 	private Integer ManagementRespRating;
@@ -111,6 +122,22 @@ public class PerformanceManagement implements Serializable {
 
 	public void setAppraisals(Appraisals appraisals) {
 		this.appraisals = appraisals;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public List<SectionMypm> getSections() {
+		return sections;
+	}
+
+	public void setSections(List<SectionMypm> sections) {
+		this.sections = sections;
 	}
 
 }

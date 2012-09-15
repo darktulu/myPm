@@ -14,6 +14,6 @@ public interface PerformanceManagementRepos extends JpaRepository<PerformanceMan
 
 	public List<PerformanceManagement> findByAppraisalsAppraisal(Integer appraisal);
 
-	public List<PerformanceManagement> findByAppraisalsAppraisalAndEmployeUsername(Integer appraisal, String username);
+	public PerformanceManagement findByAppraisalsAppraisalAndEmployeUsername(Integer appraisal, String username);
 
 }

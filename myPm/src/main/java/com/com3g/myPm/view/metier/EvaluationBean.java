@@ -3,41 +3,25 @@ package com.com3g.myPm.view.metier;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import com.com3g.myPm.domaine.EGeneralData;
-import com.com3g.myPm.service.metier.AppraisalsService;
-import com.com3g.myPm.view.utils.UserSessionBean;
+import com.com3g.myPm.domaine.PerformanceManagement;
+import com.com3g.myPm.service.metier.PerformanceManagementService;
 
 @ManagedBean
 @ViewScoped
 public class EvaluationBean implements Serializable {
 
-	
-	private static EGeneralData eGeneralData = new EGeneralData();
-//	
-//	private JobExecution jobExecution = new JobExecution();
-//
-//	private static JobExcecutionRepos jobExcecutionRepos() {
-//		return SpringJSFUtil.getBean("jobExcecutionRepos");
-//	}
+	private static final long serialVersionUID = 1L;
 
-	private static UserSessionBean userSessionBean() {
-		return SpringJSFUtil.getBean("userSessionBean");
-	}
+	private EGeneralData eGeneralData;
 
-	private static AppraisalsService appraisalsService() {
-		return SpringJSFUtil.getBean("appraisalsService");
-	}
+	@ManagedProperty(value = "#{performanceManagementService}")
+	transient private PerformanceManagementService performanceManagementService;
 
-	public void saveJobExecution() {
-
-		//jobExecution.setEmploye(eGeneralData.getUsername());
-//		jobExecution.setEmployeAppraisals((eGeneralData.getUsername()) + "_"
-//				+ (appraisalsService().getYearOpen()));
-		//jobExecution.setJeTitle("Job_Execution");
-//		jobExcecutionRepos().save(jobExecution);
-	}
+	private PerformanceManagement performanceManagement = new PerformanceManagement();
 
 	public EGeneralData geteGeneralData() {
 		return eGeneralData;
@@ -47,5 +31,26 @@ public class EvaluationBean implements Serializable {
 		this.eGeneralData = eGeneralData;
 	}
 
+	public void initPerformanceManagement(){
+		performanceManagement = new PerformanceManagement();
+	}
+	
+	public PerformanceManagement getPerformanceManagement() {
+		if (eGeneralData != null)
+			performanceManagement = getPerformanceManagementService().loadPerformanceMgmtClosedByUsername(eGeneralData.getUsername());
+		return performanceManagement;
+	}
+
+	public void setPerformanceManagement(PerformanceManagement performanceManagement) {
+		this.performanceManagement = performanceManagement;
+	}
+
+	public PerformanceManagementService getPerformanceManagementService() {
+		return SpringJSFUtil.getBean("performanceManagementService");
+	}
+
+	public void setPerformanceManagementService(PerformanceManagementService performanceManagementService) {
+		this.performanceManagementService = performanceManagementService;
+	}
 
 }

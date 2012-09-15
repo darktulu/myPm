@@ -2,6 +2,7 @@ package com.com3g.myPm.domaine;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
@@ -17,8 +18,8 @@ public class PerformanceBoard implements Serializable {
 	private Long id;
 	private int idCritere;
 	private String title;
+	 @Column(length = 450)
 	private String details;
-	private int weight;
 	@Enumerated
 	private SectionMypm section;
 
@@ -44,14 +45,6 @@ public class PerformanceBoard implements Serializable {
 
 	public void setDetails(String details) {
 		this.details = details;
-	}
-
-	public int getWeight() {
-		return weight;
-	}
-
-	public void setWeight(int weight) {
-		this.weight = weight;
 	}
 
 	public SectionMypm getSection() {

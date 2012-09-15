@@ -1,7 +1,8 @@
 package com.com3g.myPm.domaine.types;
 
+import java.io.Serializable;
 
-public enum SectionMypm{
+public enum SectionMypm implements Serializable {
 
 	/**
 	 * Job execution
@@ -23,6 +24,7 @@ public enum SectionMypm{
 	 * Code of conduct
 	 */
 	CODE_CONDUCT("Code of conduct");
+
 
 	private String value;
 
