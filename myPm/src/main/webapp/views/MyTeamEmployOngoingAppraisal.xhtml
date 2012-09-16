@@ -69,9 +69,29 @@
 							<f:setPropertyActionListener value="#{goal}" target="#{buisnessGoalsEdit.businessGoals}" />
 						</p:commandLink>
 
+						<p:commandLink styleClass="btn btn-success" style="color:white"
+							oncomplete="midyeardialog.show()" update=":midyearform"
+							rendered="#{goal.status_Appraisal=='Mid year review submited by employe'}">
+							<i class="icon-check icon-white"></i>
+							<f:setPropertyActionListener value="#{goal}" target="#{buisnessGoalsEdit.businessGoals}" />
+						</p:commandLink>
+
+						<p:commandLink styleClass="btn btn-success" style="color:white"
+							oncomplete="summarydialog.show()" update=":summaryform"
+							rendered="#{goal.status_Appraisal=='Summary submited by employe'}">
+							<i class="icon-check icon-white"></i>
+							<f:setPropertyActionListener value="#{goal}" target="#{buisnessGoalsEdit.businessGoals}" />
+						</p:commandLink>
+
+						<p:commandLink styleClass="btn btn-danger" style="color:white" oncomplete="closedialog.show()"
+							update=":closeform" rendered="#{goal.status_Appraisal=='Summary approuved by Manager'}">
+							<i class="icon-check icon-white"></i>
+							<f:setPropertyActionListener value="#{goal}" target="#{buisnessGoalsEdit.businessGoals}" />
+						</p:commandLink>
+
 						<p:commandLink styleClass="btn btn-warning" style="color:white"
 							oncomplete="confirmRaiting.show()" update=":formSessionrate"
-							rendered="#{goal.status_Appraisal=='Planning approuved by Manager'}">
+							rendered="#{goal.status_Appraisal=='Summary approuved by Manager'}">
 							<i class="icon-tasks icon-white"></i>
 							<f:setPropertyActionListener value="#{goal}" target="#{buisnessGoalsEdit.businessGoals}" />
 						</p:commandLink>
@@ -93,29 +113,67 @@
 			</ul>
 			<div>
 				<blockquote>
-				<p:commandLink action="#{performanceManagementBean.saveEvaluations}" value="save" styleClass="pull-right btn btn-primary">
-				</p:commandLink>
+					<p:commandLink action="#{performanceManagementBean.saveEvaluations}" value="save"
+						styleClass="pull-right btn btn-primary">
+					</p:commandLink>
 					<table class="table table-stripped">
 						<tbody>
 							<tr>
-							<th colspan="2">#{sessionBean.selectedSection.value}</th>
-								<th >Weight</th>
-								<th >Note</th>
+								<th colspan="2">#{sessionBean.selectedSection.value}</th>
+								<th>Weight</th>
+								<th>Note</th>
 							</tr>
 							<ui:repeat var="eval" value="#{sessionBean.selectedListEval}">
 								<tr>
 									<td><strong>#{eval.board.title}</strong></td>
 									<td>#{eval.board.details}</td>
-									<td><p:inputText value="#{eval.weight}" style="width:50px"/></td>
+									<td><p:inputText value="#{eval.weight}" style="width:50px" /></td>
 									<td><p:inputText value="#{eval.note}" style="width:50px" /></td>
 								</tr>
 							</ui:repeat>
 						</tbody>
 					</table>
-				
+
 				</blockquote>
 			</div>
 		</h:form>
+
+		<p:confirmDialog widgetVar="closedialog"
+			message="Do you realy want to close this Business goal? this action is irreversible">
+			<h:form id="closeform">
+				<h:commandLink value="Confirm" oncomplete="closedialog.hide()"
+					action="#{employBuisnessGoals.init}" actionListener="#{buisnessGoalsEdit.closeBuisnessGoal}"
+					styleClass="btn" update=":formBuisness">
+				</h:commandLink>
+
+				<p:commandLink value="Cancel" onclick="closedialog.hide()" type="button" styleClass="btn" />
+			</h:form>
+		</p:confirmDialog>
+
+		<p:confirmDialog widgetVar="summarydialog"
+			message="Voullez-vous vraiment confirmer cet objectif ? cette action est irréversible">
+			<h:form id="summaryform">
+				<h:commandLink value="Confirmer" oncomplete="summarydialog.hide()"
+					action="#{employBuisnessGoals.init}" actionListener="#{buisnessGoalsEdit.confirmSummary}"
+					styleClass="btn" update=":formBuisness">
+				</h:commandLink>
+
+				<p:commandLink value="Annuler" onclick="summarydialog.hide()" type="button" styleClass="btn" />
+			</h:form>
+		</p:confirmDialog>
+
+		<p:confirmDialog widgetVar="midyeardialog"
+			message="Voullez-vous vraiment confirmer cet objectif ? cette action est irréversible">
+			<h:form id="midyearform">
+				<h:commandLink id="confirmDels" value="Confirmer" oncomplete="midyeardialog.hide()"
+					action="#{employBuisnessGoals.init}" actionListener="#{buisnessGoalsEdit.confirmMidyear}"
+					styleClass="btn" update=":formBuisness">
+				</h:commandLink>
+
+				<p:commandLink value="Annuler" onclick="midyeardialog.hide()" type="button" styleClass="btn" />
+			</h:form>
+		</p:confirmDialog>
+
 
 		<h:form id="formSessionDel">
 			<p:confirmDialog widgetVar="confirmDel"
