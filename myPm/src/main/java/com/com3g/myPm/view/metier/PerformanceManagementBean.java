@@ -158,6 +158,7 @@ public class PerformanceManagementBean {
 
 	public void saveEvaluations() {
 		performanceManagementService.saveEvaluations(sessionBean.getSelectedListEval());
+		i18nMessageBean.showInfoMessage("evaluation.added.succes"); 
 	}
 
 }

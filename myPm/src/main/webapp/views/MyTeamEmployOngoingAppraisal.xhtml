@@ -102,6 +102,7 @@
 
 		<h3>Evaluation</h3>
 		<h:form id="formEval" rendered="#{not empty performanceManagementBean.selectedSections}">
+		
 			<!-- Only required for left/right tabs -->
 			<ul class="nav nav-tabs">
 				<ui:repeat value="#{performanceManagementBean.selectedSections}" var="sec">
@@ -113,9 +114,11 @@
 			</ul>
 			<div>
 				<blockquote>
-					<p:commandLink action="#{performanceManagementBean.saveEvaluations}" value="save"
-						styleClass="pull-right btn btn-primary">
+					<p:commandLink actionListener="#{performanceManagementBean.saveEvaluations}" value="save"
+						styleClass="btn btn-primary" update="@form">
 					</p:commandLink>
+					
+					<p:messages showDetail="true"/>
 					<table class="table table-stripped">
 						<tbody>
 							<tr>
@@ -194,7 +197,7 @@
 				message="Ajouter un commentaire à cette évaluation ! ">
 
 				<div class="control-group">
-					<h:outputLabel value="Comments" styleClass="control-label" />
+					<h:outputText value="Comments" styleClass="control-label" />
 					<div class="controls">
 						<h:inputTextarea value="#{buisnessGoalsEdit.businessGoals.comment}"
 							style="height : 200px; width : 500px;"></h:inputTextarea>
