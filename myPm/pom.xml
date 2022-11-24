@@ -18,7 +18,7 @@
 		<apache.myfaces>2.1.6</apache.myfaces>
 		<jbpm.version>5.2.0.Final</jbpm.version>
 		<drools.version>5.3.1.Final</drools.version>
-		<hibernate.version>4.0.1.Final</hibernate.version>
+		<hibernate.version>5.3.20.Final</hibernate.version>
 	</properties>
 
 	<repositories>
